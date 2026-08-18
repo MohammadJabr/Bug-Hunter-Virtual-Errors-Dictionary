@@ -23,7 +23,7 @@
       cheerpjCreateDisplay(-1, -1, document.getElementById("container"));
       const exitCode = await cheerpjRunJar("/app/BugHunter.jar");
       console.log("Bug Hunter exited with code:", exitCode);
-      status.textContent = "Bug Hunter exited.";
+      status.textContent = "Bug Hunter is running.";
     } catch (error) {
       console.error("Bug Hunter startup error:", error);
       status.textContent = "Bug Hunter failed to start. Open DevTools → Console for details.";

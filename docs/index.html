@@ -6,24 +6,27 @@
   <title>Bug Hunter — Virtual Errors Dictionary</title>
   <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
   <style>
-    html, body { margin: 0; width: 100%; height: 100%; background: #f3f4f6; }
+    html, body { margin: 0; width: 100%; height: 100%; background: #111; }
     #container { width: 100vw; height: 100svh; }
-    #loading { position: fixed; inset: 0; display: grid; place-items: center; font: 16px system-ui, sans-serif; color: #374151; pointer-events: none; }
   </style>
 </head>
 <body>
   <div id="container"></div>
-  <div id="loading">Loading Bug Hunter…</div>
   <script type="module">
-    try {
-      await cheerpjInit({ version: 17 });
-      cheerpjCreateDisplay(-1, -1, document.getElementById('container'));
-      document.getElementById('loading').remove();
-      await cheerpjRunJar('/app/BugHunter.jar');
-    } catch (error) {
-      document.getElementById('loading').textContent = 'Unable to start Bug Hunter. Please open the browser console for details.';
-      console.error(error);
-    }
+    (async () => {
+      try {
+        await cheerpjInit({ version: 11, status: "splash" });
+        cheerpjCreateDisplay(-1, -1, document.getElementById("container"));
+        const exitCode = await cheerpjRunJar("/app/BugHunter.jar");
+        console.log("Bug Hunter exited with code:", exitCode);
+      } catch (error) {
+        console.error("Bug Hunter startup error:", error);
+        const pre = document.createElement("pre");
+        pre.style.cssText = "color:#fff;padding:24px;white-space:pre-wrap;font:14px monospace";
+        pre.textContent = "Bug Hunter could not start.\n\n" + (error?.stack || error);
+        document.body.appendChild(pre);
+      }
+    })();
   </script>
 </body>
 </html>

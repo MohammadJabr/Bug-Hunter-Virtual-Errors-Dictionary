@@ -16,7 +16,7 @@
   <div id="loading">Loading Bug Hunter…</div>
   <script type="module">
     try {
-      await cheerpjInit();
+      await cheerpjInit({ version: 17 });
       cheerpjCreateDisplay(-1, -1, document.getElementById('container'));
       document.getElementById('loading').remove();
       await cheerpjRunJar('/app/BugHunter.jar');

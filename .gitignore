@@ -1,0 +1,20 @@
+# Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+
+# Java build output
+bin/
+build/
+out/
+target/
+*.class
+
+# IDEs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

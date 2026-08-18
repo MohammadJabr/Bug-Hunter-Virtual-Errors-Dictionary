@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bug Hunter — Virtual Errors Dictionary</title>
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; background: #f3f4f6; }
+    #container { width: 100vw; height: 100svh; }
+    #loading { position: fixed; inset: 0; display: grid; place-items: center; font: 16px system-ui, sans-serif; color: #374151; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <div id="loading">Loading Bug Hunter…</div>
+  <script type="module">
+    try {
+      await cheerpjInit();
+      cheerpjCreateDisplay(-1, -1, document.getElementById('container'));
+      document.getElementById('loading').remove();
+      await cheerpjRunJar('/app/BugHunter.jar');
+    } catch (error) {
+      document.getElementById('loading').textContent = 'Unable to start Bug Hunter. Please open the browser console for details.';
+      console.error(error);
+    }
+  </script>
+</body>
+</html>

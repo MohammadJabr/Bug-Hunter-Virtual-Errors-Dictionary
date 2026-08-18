@@ -55,7 +55,8 @@ public class BugHunterGUI extends JFrame {
 
         setSize(900, 700);
 
-        setLocationRelativeTo(null);
+        // Avoid querying the native desktop screen; this is more portable in browser-based Swing runtimes.
+        setLocation(40, 40);
 
         setVisible(true);
 
